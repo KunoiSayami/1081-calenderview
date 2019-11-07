@@ -17,15 +17,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.text1, R.id.text2})
+    @OnClick(R.id.text2)
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.text1:
-                startActivity(new Intent(MainActivity.this,XiaomiActivity.class));
-                break;
-            case R.id.text2:
-                startActivity(new Intent(MainActivity.this,DingdingActivity.class));
-                break;
-        }
+        startActivity(new Intent(MainActivity.this,DingdingActivity.class));
     }
 }

@@ -6,7 +6,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context="com.codbking.calendar.exaple.DingdingActivity">
 
@@ -18,13 +18,11 @@
         >
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/txtCalendarTitle"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="2016/10/10"
-            android:textColor="#ffffff" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="48dp"
@@ -45,7 +43,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="SUN"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
         <TextView
@@ -54,7 +52,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="MON"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
         <TextView
@@ -63,7 +61,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TUE"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
         <TextView
@@ -72,7 +70,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="WED"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
         <TextView
@@ -81,7 +79,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="THU"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
         <TextView
@@ -90,7 +88,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="FRI"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
         <TextView
@@ -99,7 +97,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="SAT"
-            android:textColor="#ffffff"
+            android:textColor="@color/calendarWeekTitle"
             />
 
     </LinearLayout>

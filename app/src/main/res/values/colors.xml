@@ -3,5 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
+    <color name="calendarWeekTitle">#9C9C9C</color>
+    <color name="calendarTodayColor">#E79E35</color>
+    <color name="calendarBlack">#000000</color>
 </resources>

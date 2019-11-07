@@ -1,8 +1,6 @@
 package com.codbking.calendar.exaple;
 
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +20,6 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.codbking.calendar.exaple.Utils.px;
 
@@ -33,7 +30,7 @@ public class DingdingActivity extends AppCompatActivity {
 	CalendarDateView mCalendarDateView;
 	@BindView(R.id.list)
 	ListView mList;
-	@BindView(R.id.title)
+	@BindView(R.id.txtCalendarTitle)
 	TextView mTitle;
 
 	private static String TAG = "log_dingding";
@@ -58,9 +55,9 @@ public class DingdingActivity extends AppCompatActivity {
 
 				view.setText("" + bean.day);
 				if (bean.mothFlag != 0) {
-					view.setTextColor(0xff9299a1);
+					view.setTextColor(getResources().getColor(R.color.calendarWeekTitle));
 				} else {
-					view.setTextColor(0xffffffff);
+					view.setTextColor(getResources().getColor(R.color.calendarBlack));
 				}
 
 				return convertView;

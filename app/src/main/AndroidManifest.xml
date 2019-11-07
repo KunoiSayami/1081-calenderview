@@ -13,12 +13,7 @@
             android:theme="@style/AppNotitleTheme"
             >
         </activity>
-        <activity
-            android:name=".XiaomiActivity"
-            android:theme="@style/AppNotitleTheme"
-            >
-        </activity>
-        <activity
+		<activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme"
             >
