@@ -53,7 +53,7 @@ public class DingdingActivity extends AppCompatActivity {
 
 				view = (TextView) convertView.findViewById(R.id.text);
 
-				view.setText("" + bean.day);
+				view.setText(String.valueOf(bean.day));
 				if (bean.mothFlag != 0) {
 					view.setTextColor(getResources().getColor(R.color.calendarWeekTitle));
 				} else {
@@ -107,7 +107,7 @@ public class DingdingActivity extends AppCompatActivity {
 	private
 	String getMonthString(int num) {
 		Log.d(TAG, "getMonthString: num => " + num);
-		if (BuildConfig.DEBUG && !(num >= 0 && num < 12)) {
+		if (BuildConfig.DEBUG && !(num > 0 && num < 13)) {
 			throw new AssertionError();
 		}
 		return getResources().getStringArray(R.array.month)[num - 1];
