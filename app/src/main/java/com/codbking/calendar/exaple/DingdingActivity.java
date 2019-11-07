@@ -1,7 +1,10 @@
 package com.codbking.calendar.exaple;
 
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,89 +29,91 @@ import static com.codbking.calendar.exaple.Utils.px;
 
 public class DingdingActivity extends AppCompatActivity {
 
-    @BindView(R.id.calendarDateView)
-    CalendarDateView mCalendarDateView;
-    @BindView(R.id.list)
-    ListView mList;
-    @BindView(R.id.title)
-    TextView mTitle;
+	@BindView(R.id.calendarDateView)
+	CalendarDateView mCalendarDateView;
+	@BindView(R.id.list)
+	ListView mList;
+	@BindView(R.id.title)
+	TextView mTitle;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dingding);
-        ButterKnife.bind(this);
+	private static String TAG = "log_dingding";
 
-        mCalendarDateView.setAdapter(new CaledarAdapter() {
-            @Override
-            public View getView(View convertView, ViewGroup parentView, CalendarBean bean) {
-                TextView view;
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(parentView.getContext()).inflate(R.layout.item_calendar, null);
-                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(px(55), px(55));
-                    convertView.setLayoutParams(params);
-                }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_dingding);
+		ButterKnife.bind(this);
 
-                view = (TextView) convertView.findViewById(R.id.text);
+		mCalendarDateView.setAdapter(new CaledarAdapter() {
+			@Override
+			public View getView(View convertView, ViewGroup parentView, CalendarBean bean) {
+				TextView view;
+				if (convertView == null) {
+					convertView = LayoutInflater.from(parentView.getContext()).inflate(R.layout.item_calendar, null);
+					ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(px(55), px(55));
+					convertView.setLayoutParams(params);
+				}
 
-                view.setText("" + bean.day);
-                if (bean.mothFlag != 0) {
-                    view.setTextColor(0xff9299a1);
-                } else {
-                    view.setTextColor(0xffffffff);
-                }
+				view = (TextView) convertView.findViewById(R.id.text);
 
-                return convertView;
-            }
-        });
+				view.setText("" + bean.day);
+				if (bean.mothFlag != 0) {
+					view.setTextColor(0xff9299a1);
+				} else {
+					view.setTextColor(0xffffffff);
+				}
 
-        mCalendarDateView.setOnItemClickListener(new CalendarView.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int postion, CalendarBean bean) {
-                mTitle.setText(bean.year + "/" + getDisPlayNumber(bean.moth) + "/" + getDisPlayNumber(bean.day));
-            }
-        });
+				return convertView;
+			}
+		});
 
-        int[] data = CalendarUtil.getYMD(new Date());
-        mTitle.setText(data[0] + "/" + data[1] + "/" + data[2]);
+		mCalendarDateView.setOnItemClickListener(new CalendarView.OnItemClickListener() {
+			@Override
+			public void onItemClick(View view, int postion, CalendarBean bean) {
+				mTitle.setText(getMonthString(bean.moth));
+			}
+		});
 
-        mList.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return 100;
-            }
+		int[] data = CalendarUtil.getYMD(new Date());
+		mTitle.setText(getMonthString(data[1]));
 
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
+		mList.setAdapter(new BaseAdapter() {
+			@Override
+			public int getCount() {
+				return 100;
+			}
 
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
+			@Override
+			public Object getItem(int position) {
+				return null;
+			}
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(DingdingActivity.this).inflate(android.R.layout.simple_list_item_1, null);
-                }
+			@Override
+			public long getItemId(int position) {
+				return 0;
+			}
 
-                TextView textView = (TextView) convertView;
-                textView.setText("item" + position);
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				if (convertView == null) {
+					convertView = LayoutInflater.from(DingdingActivity.this).inflate(android.R.layout.simple_list_item_1, null);
+				}
 
-                return convertView;
-            }
-        });
+				TextView textView = (TextView) convertView;
+				textView.setText("item" + position);
 
-    }
+				return convertView;
+			}
+		});
 
-    private String getDisPlayNumber(int num) {
-        return num < 10 ? "0" + num : "" + num;
-    }
+	}
+	private
+	String getMonthString(int num) {
+		Log.d(TAG, "getMonthString: num => " + num);
+		if (BuildConfig.DEBUG && !(num >= 0 && num < 12)) {
+			throw new AssertionError();
+		}
+		return getResources().getStringArray(R.array.month)[num - 1];
+	}
 
-    @OnClick(R.id.back)
-    public void onClick() {
-        finish();
-    }
 }
