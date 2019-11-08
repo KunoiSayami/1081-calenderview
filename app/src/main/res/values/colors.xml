@@ -6,4 +6,7 @@
     <color name="calendarWeekTitle">#9C9C9C</color>
     <color name="calendarTodayColor">#E79E35</color>
     <color name="calendarBlack">#000000</color>
+    <color name="c1">#b31313</color>
+    <color name="c2">#b3f313</color>
+    <color name="c3">#b3f3c3</color>
 </resources>

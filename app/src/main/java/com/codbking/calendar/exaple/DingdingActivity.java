@@ -1,5 +1,6 @@
 package com.codbking.calendar.exaple;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.codbking.calendar.CalendarBean;
 import com.codbking.calendar.CalendarDateView;
 import com.codbking.calendar.CalendarUtil;
 import com.codbking.calendar.CalendarView;
+import com.codbking.calendar.exaple.types.DateWithMark;
 
 import java.util.Date;
 
@@ -33,6 +35,7 @@ public class DingdingActivity extends AppCompatActivity {
 	@BindView(R.id.txtCalendarTitle)
 	TextView mTitle;
 
+
 	private static String TAG = "log_dingding";
 
 	@Override
@@ -40,24 +43,41 @@ public class DingdingActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dingding);
 		ButterKnife.bind(this);
-
+		final DateWithMark[] dm = {
+				new DateWithMark("2019/11/11", R.color.c1),
+				new DateWithMark("2019/11/13", R.color.c2),
+				new DateWithMark("2019/11/15", R.color.c3),
+				new DateWithMark("2019/11/18", Color.TRANSPARENT),
+		};
 		mCalendarDateView.setAdapter(new CaledarAdapter() {
 			@Override
 			public View getView(View convertView, ViewGroup parentView, CalendarBean bean) {
 				TextView view;
+				View underlineView;
 				if (convertView == null) {
 					convertView = LayoutInflater.from(parentView.getContext()).inflate(R.layout.item_calendar, null);
 					ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(px(55), px(55));
 					convertView.setLayoutParams(params);
 				}
 
-				view = (TextView) convertView.findViewById(R.id.text);
+				view = (TextView) convertView.findViewById(R.id.txtDay);
+				underlineView = convertView.findViewById(R.id.viewUnderLine);
 
 				view.setText(String.valueOf(bean.day));
 				if (bean.mothFlag != 0) {
 					view.setTextColor(getResources().getColor(R.color.calendarWeekTitle));
 				} else {
 					view.setTextColor(getResources().getColor(R.color.calendarBlack));
+				}
+
+
+				// TODO: use another to improve speed
+				for (DateWithMark d : dm) {
+					if (d.equals(bean)) {
+						underlineView.setBackgroundResource(d.getColor());
+						// marked
+						break;
+					}
 				}
 
 				return convertView;

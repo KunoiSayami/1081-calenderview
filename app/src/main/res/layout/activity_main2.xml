@@ -13,20 +13,6 @@
     tools:context="com.codbking.calendar.exaple.MainActivity">
 
     <TextView
-        android:id="@+id/text1"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
-        android:text="小米日历"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#dddddd"
-        />
-
-    <TextView
         android:id="@+id/text2"
         android:layout_width="match_parent"
         android:layout_height="48dp"
